@@ -38,6 +38,7 @@ The model achieved an **F1-score of 0.9259**, showing strong performance in bala
 /SRSAmbiguityDetection
 │── rf-transformer.ipynb        # Main notebook with full implementation
 │── final.csv                   # Dataset used for training/testing
+│── requirements.txt                  
 │── README.md
 ```
 
