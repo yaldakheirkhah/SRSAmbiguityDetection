@@ -1,0 +1,31 @@
+{
+  "experiment_id": "ambifix_original_sqrtweighted_bert_retrain_v1_20261031",
+  "files_sha256": {
+    "data/train.csv": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+    "data/validation.csv": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42",
+    "config/training_config.json": "882f7cbfe5c272f773d9102e7c970acd412559294f5f17b0ae6541533331e5f3",
+    "config/class_weights.json": "9d3bd6d34bd23fb7a6239a84d003a851bc22e1b376647f52b5f8d5ae8bbc82f3",
+    "config/pretrained_checkpoint.json": "e6097e17a4740e27a697d352392aa8f288a9e3b27d9bc97f3b43656a6e8ffeeb"
+  },
+  "row_counts": {
+    "train": 4731,
+    "validation": 1015
+  },
+  "class_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "source_files": {
+    "train": "data/splits/train.csv",
+    "validation": "data/splits/validation.csv"
+  },
+  "frozen_original_file_hashes": {
+    "train": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+    "validation": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42"
+  },
+  "provenance": "Byte-exact copies of the pre-existing frozen original development files. No split regeneration, augmentation, relabeling or held-out access."
+}

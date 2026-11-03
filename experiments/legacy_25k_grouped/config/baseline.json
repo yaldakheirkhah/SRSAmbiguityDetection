@@ -1,0 +1,25 @@
+{
+  "recipe_id": "tfidf_balanced_lr_single_run_v1",
+  "frozen_after_grouping_before_baseline": true,
+  "partition_changes_after_metrics": false,
+  "training_only_fit": true,
+  "labels": [1, 2, 3, 4, 5, 6],
+  "vectorizer": {
+    "ngram_range": [1, 2],
+    "min_df": 2,
+    "max_features": 50000,
+    "lowercase": true,
+    "sublinear_tf": true,
+    "strip_accents": null
+  },
+  "classifier": {
+    "C": 1.0,
+    "class_weight": "balanced",
+    "solver": "lbfgs",
+    "max_iter": 1500,
+    "random_state": 42
+  },
+  "selection_metric": "macro_f1 over explicit labels 1..6; zero_division=0",
+  "secondary_metrics": ["weighted_f1", "accuracy", "per_class_precision_recall_f1", "confusion_matrix"],
+  "scope": "One exploratory baseline on the new partial-recovery split; no tuning or direct comparison with the old frozen validation partition"
+}

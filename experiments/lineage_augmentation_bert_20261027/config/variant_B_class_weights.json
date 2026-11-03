@@ -1,0 +1,35 @@
+{
+  "variant": "B",
+  "dataset_class_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "training_counts": [
+    900,
+    900,
+    900,
+    900,
+    900,
+    2674
+  ],
+  "training_rows": 7174,
+  "values": [
+    1.075239846835929,
+    1.075239846835929,
+    1.075239846835929,
+    1.075239846835929,
+    1.075239846835929,
+    0.6238007658203553
+  ],
+  "formula": "(N_train / (6 * n_train_class)) ** 0.5, normalized to arithmetic mean 1",
+  "training_only": true,
+  "dtype_saved": "float64 JSON values; torch loss weights cast float32 at runtime",
+  "validation_labels_used": false,
+  "synthetic_labels": "UNVERIFIED; originals SOURCE_LABEL",
+  "training_data_path": "data/train_B_Full_Provisional_v1.csv",
+  "training_data_sha256": "644fd93c487c41070fb74f1ca88952229d2f82375cd3a14b6a61937fbe202a3a"
+}

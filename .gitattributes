@@ -1,0 +1,4 @@
+# Preserve hash-bound code/configuration and evidence bytes on every platform.
+* -text
+# Original history uses CRLF; preserve it without spurious whitespace failures.
+results/mac_training_history.csv whitespace=cr-at-eol

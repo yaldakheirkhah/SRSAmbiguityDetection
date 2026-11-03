@@ -1,0 +1,91 @@
+{
+  "benchmark_id": "ambifix_legacy25k_rawmatched_grouped_v1_20261026",
+  "date": "2026-10-26",
+  "scope": "Safest partial recovery from legacy corpus; NOT a full back-translation-benefit experiment",
+  "source_paths": [
+    "data/raw/dataset.csv",
+    "final.csv"
+  ],
+  "forbidden_directory": "data/splits",
+  "normalization": "Unicode NFKC; whitespace collapse/trim; casefold; Text retained unchanged for models",
+  "punctuation_variant_key": "Unicode word tokens plus preserved operators <>=+/%#@&|^~; join with spaces; only co-isolation evidence",
+  "strong_lexical_candidate": {
+    "char_tfidf_cosine_min": 0.95,
+    "token_jaccard_min": 0.8,
+    "minimum_tokens": 5,
+    "minimum_characters": 25
+  },
+  "cross_family_lexical_risk": {
+    "char_tfidf_cosine_min": 0.85,
+    "token_jaccard_min": 0.5,
+    "minimum_tokens": 5,
+    "minimum_characters": 25
+  },
+  "character_vectorizer": {
+    "analyzer": "char_wb",
+    "ngram_range": [
+      3,
+      5
+    ],
+    "min_df": 1,
+    "dtype": "float32"
+  },
+  "semantic_review_retrieval": {
+    "method": "Local word TF-IDF + truncated SVD latent lexical-semantic retrieval; NOT a semantic lineage verifier",
+    "word_ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 2,
+    "max_features": 100000,
+    "components": 128,
+    "random_state": 42,
+    "nearest_neighbors_per_node": 5,
+    "latent_cosine_min": 0.9,
+    "char_cosine_max_exclusive": 0.85,
+    "token_jaccard_max_exclusive": 0.7,
+    "action": "Quarantine candidate-family endpoints implicated in these unresolved review candidates; do not merge or relabel"
+  },
+  "family_quarantine": {
+    "any_cross_label_conflict": true,
+    "maximum_unique_text_nodes": 30,
+    "maximum_final_rows": 100,
+    "maximum_distinct_original_normalized_anchors": 1,
+    "quarantine_endpoints_of_any_cross_family_lexical_risk": true
+  },
+  "retention": "Only normalized Text matches to raw original; final Class must agree with raw; family must pass all quarantine checks; one model example per normalized original Text (first final row). ALL unlinked rows excluded even if lexically similar.",
+  "split": {
+    "unit": "candidate family group_id",
+    "validation_fraction": 0.2,
+    "random_state": 42,
+    "stratify": "single family class",
+    "minimum_eligible_groups_per_class": 25,
+    "minimum_validation_examples_per_class": 5,
+    "minimum_training_examples_per_class": 20
+  },
+  "quality_gate": "Full-25k provenance FAIL without verified parentage; partial recovery PASS only on declared textual/accounting/quarantine/stratification checks; semantic recall UNKNOWN; never claim leakage-free.",
+  "eligible_for_original_frozen_test": false,
+  "old_frozen_validation_comparison": "Old 0.581140 belongs to another partition and is NOT directly comparable",
+  "frozen_before_baseline": true,
+  "threshold_selection": "Declared before graph construction/splitting/baseline; no outcome-dependent revisions allowed",
+  "scientific_limitations": [
+    "Raw-matched content identity is not causal parentage",
+    "Unknown semantic/project/document family relations remain",
+    "Excluding unlinked variants does not measure augmentation benefit",
+    "New split may reuse original old-held-out requirements; resulting models ineligible for original frozen test"
+  ],
+  "bert_recipe": {
+    "initialization": "Original pretrained bert-base-uncased only; never a historical fine-tuned checkpoint",
+    "seed": 42,
+    "max_length": 192,
+    "batch_size": 8,
+    "eval_batch_size": 16,
+    "gradient_accumulation": 2,
+    "max_epochs": 20,
+    "patience": 4,
+    "min_delta": 0.001,
+    "class_weights": "Train-only inverse square root frequency normalized to mean 1",
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01
+  }
+}

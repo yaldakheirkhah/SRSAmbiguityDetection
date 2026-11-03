@@ -1,0 +1,37 @@
+{
+  "class_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "counts": [
+    324,
+    418,
+    415,
+    332,
+    568,
+    2674
+  ],
+  "weights": [
+    1.2357818674339447,
+    1.0879932043754172,
+    1.091918628567897,
+    1.2208021396880808,
+    0.9333405954644729,
+    0.43016356447018783
+  ],
+  "formula": "sqrt(N_train/(6*n_class)) divided by arithmetic mean of six raw weights",
+  "fit_partition": "frozen original training only",
+  "training_sha256": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+  "model_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}

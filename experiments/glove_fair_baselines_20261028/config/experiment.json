@@ -1,0 +1,92 @@
+{
+  "experiment_id": "glove_fair_baselines_20261028_v1",
+  "design_status": "New fixed baseline implementations; not historical reproductions",
+  "design_frozen_before_any_new_validation_scores": true,
+  "seed": 42,
+  "dataset": {
+    "train": "data/splits/train.csv",
+    "validation": "data/splits/validation.csv",
+    "train_sha256": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+    "validation_sha256": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42",
+    "train_rows": 4731,
+    "validation_rows": 1015,
+    "input_field": "Text",
+    "label_field": "Class",
+    "id_field": "source_id",
+    "allowed_dataset_files_only": ["train.csv", "validation.csv"]
+  },
+  "labels": {
+    "dataset_order": [1, 2, 3, 4, 5, 6],
+    "model_order": [0, 1, 2, 3, 4, 5],
+    "names": ["Lexical Ambiguity", "Syntactic Ambiguity", "Semantic Ambiguity", "Syntax Ambiguity", "Pragmatic Ambiguity", "Clean"],
+    "mapping_rule": "model_id = dataset_id - 1; preserve distinct dataset classes 2 and 4"
+  },
+  "tokenizer": {
+    "name": "fixed_unicode_word_punctuation_v1",
+    "pattern": "\\w+|[^\\w\\s]",
+    "lowercase": true,
+    "unicode_normalization": "none",
+    "stemming_or_stopword_removal": false,
+    "fit_partition": "train only",
+    "minimum_frequency": 1,
+    "vocabulary_cap": null,
+    "ordering": "descending training frequency, lexical token tie break",
+    "pad_id": 0,
+    "unk_id": 1,
+    "max_tokens": 192,
+    "truncation": "right",
+    "padding": "right; dynamic batch length; minimum length 5 for CNN kernels"
+  },
+  "embedding": {
+    "repository": "stanfordnlp/glove",
+    "revision": "1db2080b2d94def6e5b0386a523102f9d8849e9d",
+    "archive_sha256": "6471382cdd837544bf3ac72497a38715e845897d265b2b424b4761832009c837",
+    "member": "glove.6B.100d.txt",
+    "dimension": 100,
+    "trainable": true,
+    "padding_vector": "zeros, padding_idx=0 prevents updates",
+    "oov_initialization": "seeded independent Normal(0, 0.05) for training vocabulary misses and UNK; shared UNK for validation-only tokens",
+    "validation_embedding_vocabulary_expansion": false
+  },
+  "architectures": {
+    "cnn": {
+      "kernels": [3, 4, 5], "filters_per_kernel": 100,
+      "activation": "ReLU", "pooling": "max over valid convolution windows; pad-only windows excluded",
+      "short_sequence_rule": "one right-zero-padded window if token length is shorter than kernel",
+      "embedding_dropout": 0.2, "classifier_dropout": 0.5,
+      "classifier": "concatenate 3 pooled vectors, linear 300 -> 6"
+    },
+    "lstm": {
+      "hidden_size": 128, "layers": 1, "bidirectional": false,
+      "embedding_dropout": 0.2, "classifier_dropout": 0.5,
+      "pooling": "last actual token output; gather at length-1, never padded final output",
+      "classifier": "linear 128 -> 6", "recurrent_dropout": 0.0
+    }
+  },
+  "training": {
+    "optimizer": "AdamW", "learning_rate": 0.001, "weight_decay": 0.0001,
+    "betas": [0.9, 0.999], "epsilon": 1e-8,
+    "batch_size": 32, "evaluation_batch_size": 64, "gradient_accumulation": 1,
+    "maximum_epochs": 40, "minimum_epochs": 8,
+    "early_stopping_patience": 8, "meaningful_improvement_delta": 0.001,
+    "early_stopping_rule": "patience counts epochs without improvement >0.001 over meaningful best; stop after min epochs",
+    "checkpoint_rule": "save every strict increase of validation Macro F1; earliest epoch wins exact ties",
+    "class_weighting": "sqrt(N/(6*n_c)), normalized to mean 1; training counts only",
+    "loss": "CrossEntropyLoss(weight=class_weights, reduction=mean); no label smoothing",
+    "gradient_clip_norm": 1.0, "learning_rate_schedule": "none",
+    "precision": "float32 forward/backward, no mixed precision",
+    "data_loader_workers": 0, "cpu_threads": 4,
+    "device_policy": "MPS if architecture's finite forward/backward smoke passes; otherwise CPU with recorded reason",
+    "mps_operator_fallback": false,
+    "deterministic_algorithms": "enabled with warn_only=True; hardware/library nondeterminism remains possible",
+    "runs_per_architecture": 1,
+    "hyperparameter_search": false
+  },
+  "evaluation": {
+    "class_order": [1, 2, 3, 4, 5, 6], "zero_division": 0,
+    "primary_metric": "six-class macro F1",
+    "probabilities": "CPU float64 softmax of saved float32 logits; 17-digit CSV and lossless NPY",
+    "scope": "reused frozen validation, not final held-out performance",
+    "forbidden": "No held-out data access, no synthetic data, no historical augmented corpus, no contaminated checkpoints"
+  }
+}

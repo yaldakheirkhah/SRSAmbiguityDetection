@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-27",
+  "evidence_review_type": "SCOPED_LOCAL_BASELINE_COMPARABILITY_NOT_NEW_EXPERIMENT",
+  "sources": {
+    "dossier": {
+      "path": "experiments/weighted_bert/README.md",
+      "sha256": "1787695e6ab39ddd48f50673d4f1b61f0634fba4d1f294a29acfa265b0e63c1e"
+    },
+    "summary": {
+      "path": "experiments/weighted_bert/runs/bert_sqrtweighted_max50_20261018_214144/RUN_SUMMARY_20261018_214144.txt",
+      "sha256": "94c0fb69767fea5ca24a505c011e96edab35c092b0bfce9d4fa5fda1544a6a7c"
+    },
+    "epoch_history": {
+      "path": "experiments/weighted_bert/runs/bert_sqrtweighted_max50_20261018_214144/epoch_metrics.csv",
+      "sha256": "8df00ceeaeb57f06a8b1ca64a78c3e44365bbc37f3f3045ec175c3d4e273903a"
+    },
+    "recalculated_metrics": {
+      "path": "experiments/weighted_bert/runs/bert_sqrtweighted_max50_20261018_214144/verification/metrics_recalculated.json",
+      "sha256": "2024e5129cf78eb72db18d05c7d9b2ceebba31973f398a9255c924bdf67267f3"
+    },
+    "unbound_reference": {
+      "path": "experiments/weighted_bert/source/reference/AmbiFix_BERT_5060Ti_50Epoch_Comparison.ipynb",
+      "sha256": "e316151b02ad33bb5ac3ba7f2c3ec749fc43e3a9b4ad978b539fe2b77a9a43ee"
+    }
+  },
+  "actual_supported_evidence": {
+    "verification_scope": "Existing saved-prediction arithmetic/ID/text/label/order verification, plus direct inspection of summary and epoch history in this subtask. No re-evaluation of predictions, training or inference.",
+    "run_name": "bert_sqrtweighted_max50",
+    "session_id": "20261018_214144",
+    "metrics": {
+      "accuracy": 0.7054187192118226,
+      "macro_f1": 0.5811396777932097,
+      "weighted_f1": 0.6995114383470095
+    },
+    "validation_rows": 1015,
+    "validation_sha256": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42",
+    "external_probability_class_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "validation_ids_text_labels_and_original_order_match": true,
+    "selected_epoch": 10,
+    "epochs_logged": 18,
+    "selected_epoch_is_literal_maximum_logged_macro_f1": true,
+    "successful_optimizer_steps_per_logged_epoch": [
+      296
+    ],
+    "skipped_optimizer_steps_per_logged_epoch": [
+      0
+    ],
+    "recorded_learning_rate_epochs_1_to_14": [
+      2e-05
+    ],
+    "recorded_learning_rate_epochs_15_to_18": [
+      1e-05
+    ],
+    "training_design_label": "Author-supplied run summary says no augmentation; exact executed training-input identity remains unsupported by a recovered actual manifest"
+  },
+  "reference_notebook": {
+    "code_cells": 8,
+    "all_execution_counts_null": true,
+    "all_outputs_empty": true,
+    "recipe": {
+      "evidence_status": "UNEXECUTED_UNBOUND_REFERENCE_ONLY_NOT_CONFIRMED_ACTUAL_RUN",
+      "model_id": "bert-base-uncased",
+      "pretrained_revision": "unfixed/default Hub revision in reference; actual baseline unknown",
+      "class_names": {
+        "1": "Lexical Ambiguity",
+        "2": "Syntactic Ambiguity",
+        "3": "Semantic Ambiguity",
+        "4": "Syntax Ambiguity",
+        "5": "Pragmatic Ambiguity",
+        "6": "Clean"
+      },
+      "dataset_to_model_index": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 3,
+        "5": 4,
+        "6": 5
+      },
+      "input": "raw original Text cast to str; no explicit stopword removal or external normalization",
+      "integrity_key": "NFKC + whitespace collapse/trim + casefold, used for checks only",
+      "tokenizer": {
+        "use_fast": true,
+        "padding": "dynamic per batch",
+        "truncation": true,
+        "max_length": 192
+      },
+      "seed": 42,
+      "train_batch_size": 8,
+      "eval_batch_size": 16,
+      "gradient_accumulation": 2,
+      "max_epochs": 50,
+      "min_epochs": 8,
+      "early_stop_patience": 8,
+      "early_stop_min_delta": 0.001,
+      "checkpoint_rule": "Replace selected checkpoint only when validation macro F1 > previous selected +0.001",
+      "optimizer": {
+        "name": "torch.optim.AdamW",
+        "learning_rate": 2e-05,
+        "weight_decay": 0.01,
+        "other_arguments": "library defaults, not explicitly supplied"
+      },
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "patience": 3,
+        "factor": 0.5,
+        "min_lr": 2e-07,
+        "threshold": 0.001,
+        "threshold_mode": "rel (library default, omitted by reference)"
+      },
+      "gradient_clip_norm": 1.0,
+      "gradient_checkpointing": false,
+      "class_weights": "(N_train/(6*n_train_class))**0.5, divided by arithmetic mean of six weights",
+      "training_loss": "CrossEntropyLoss(weight=weights), default weighted-mean reduction on each microbatch",
+      "gradient_accumulation_implementation": "Each independently normalized microbatch loss divided by number of microbatches in accumulation window",
+      "training_precision": "BF16 when CUDA reports support; otherwise FP16 + GradScaler",
+      "validation_precision": "Autocast forward then FP32 logits/softmax; not an explicitly full FP32 forward",
+      "validation_loss": "Unweighted cross entropy",
+      "validation_order": "shuffle=False",
+      "metrics": "Explicit class indices 0..5 macro F1 and weighted F1, accuracy; exported dataset classes 1..6; zero_division=0",
+      "reference_dependency_suggestions": {
+        "torch": "2.9.0 CUDA12.8 wheel",
+        "transformers": "4.51.3",
+        "pandas": "2.2.3",
+        "numpy": "1.26.4",
+        "scikit-learn": "1.6.1",
+        "matplotlib": "3.10.1",
+        "safetensors": "0.5.3"
+      }
+    }
+  },
+  "proposed_new_recipe": {
+    "status": "CLOSEST_DOCUMENTED_NEW_RECIPE_NOT_ASSERTED_BASELINE_REPRODUCTION",
+    "basis": "Explicit reference settings, corroborating actual epoch/LR observations where available, and requested correctness improvements",
+    "model_id": "bert-base-uncased",
+    "initialization": "Official original pretrained weights at a newly pinned immutable revision; never historical fine-tuned checkpoint",
+    "seed": 42,
+    "max_length": 192,
+    "train_batch_size": 8,
+    "eval_batch_size": 16,
+    "gradient_accumulation": 2,
+    "max_epochs": 50,
+    "min_epochs": 8,
+    "early_stop_patience": 8,
+    "early_stop_min_delta": 0.001,
+    "checkpoint_rule": "Save every strict improvement in literal validation macro F1; earliest epoch wins exact ties. Use min_delta only for stopping progress counter.",
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 2e-05,
+      "weight_decay": 0.01
+    },
+    "scheduler": {
+      "name": "ReduceLROnPlateau",
+      "mode": "max",
+      "patience": 3,
+      "factor": 0.5,
+      "min_lr": 2e-07,
+      "threshold": 0.001,
+      "threshold_mode": "rel"
+    },
+    "class_weights": "Same reference square-root frequency formula, computed separately only from actual A/B training labels and saved",
+    "gradient_reduction": "Backpropagate summed weighted CE numerators, then divide accumulated gradients by sum of true-class weights across the complete window before clipping/stepping",
+    "gradient_clip_norm": 1.0,
+    "gradient_checkpointing": false,
+    "training_precision": "BF16 on the specified supported RTX GPU; record actual precision and fail rather than silently alter recipe",
+    "validation_precision": "Explicit FP32 model forward/logits/softmax to meet full-precision validation requirement; save lossless float32 arrays and unrounded CSV probability columns",
+    "preprocessing": "Preserved raw Text only; tokenizer performs its own standard uncased preprocessing; integrity normalization does not rewrite model input",
+    "evaluation": "Frozen validation bytes/order only; Class 1..6 and model indices0..5 fixed; no test entry point"
+  },
+  "corroboration_not_proof": [
+    "296 optimizer steps is consistent with ceil(ceil(4731/8)/2), but also other batch/accumulation choices; do not identify batch size from it.",
+    "18 logged epochs with best epoch10 is consistent with patience8, but does not prove the actual early-stopping or epoch-cap configuration.",
+    "LR2e-5 until logged epoch14 and1e-5 from15 is consistent with reference plateau scheduler, but not a recovered actual scheduler configuration."
+  ],
+  "scientifically_material_reference_issues": [
+    "Averaging separately normalized weighted microbatch means does not equal weighted CE over the combined effective batch. Unequal sum-of-class-weight denominators and uneven final microbatches cause differences.",
+    "Meaningful-improvement checkpoint replacement at min_delta0.001 can skip a later literal maximum macro F1. It happened to select the actual maximum in this saved epoch log.",
+    "Reference initialization revision is not pinned; actual original pretrained revision/config/tokenizer are absent.",
+    "Reference AMP validation can produce different probabilities/metrics from a full FP32 forward; actual baseline precision remains unknown."
+  ],
+  "actual_baseline_artifacts_missing_in_scoped_evidence": [
+    "Selected epoch10 best_model weights/config/tokenizer",
+    "Actual experiment_provenance.json and class_weights.json or equivalent exact weight values/formula binding",
+    "Executed original training/evaluation notebook/script with configuration and input-hash record",
+    "Original pip_freeze_20261018_214144.txt and GPU/CUDA/precision environment",
+    "Original pretrained immutable revision and tokenizer identity used in the actual run"
+  ],
+  "comparison_boundary": "A/B results on the same frozen validation can be reported as exploratory descriptive comparisons with 0.5811396777932097. Without the actual historical recipe, differences cannot be attributed solely to augmentation. A future matched unaugmented control or recovered and verified actual recipe is needed for a controlled augmentation-effect claim; do not automatically add such a run under the current priority.",
+  "additional_limits": [
+    "Class weights intentionally change with the A/B training-label frequencies, even when their formula is fixed.",
+    "Same maximum epochs implies more optimizer updates for larger training variants; save actual updates/epochs and disclose this training-budget difference.",
+    "Single-seed validation selection and repeated use of the same validation partition do not establish statistical superiority or final generalization.",
+    "Automatic flag filtering does not validate unflagged synthetic labels; all inherited synthetic labels remain provisional."
+  ],
+  "dataset_files_read": false,
+  "test_accessed": false,
+  "torch_imported": false,
+  "model_downloaded": false,
+  "training_or_inference_executed": false
+}

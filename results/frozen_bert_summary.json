@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "evidence_scope": "Sanitized aggregate transcription of completed private evidence; release audit does not repeat inference or read source held-out data.",
+  "experiment_id": "ambifix_original_sqrtweighted_bert_mac_mps_v1_20261101",
+  "training_rows": 4731,
+  "validation_rows": 1015,
+  "held_out_rows": 1015,
+  "augmented_training_rows": 0,
+  "dataset_class_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "model_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "class_names": [
+    "Lexical Ambiguity",
+    "Syntactic Ambiguity",
+    "Semantic Ambiguity",
+    "Syntax Ambiguity",
+    "Pragmatic Ambiguity",
+    "Clean"
+  ],
+  "best_epoch": 41,
+  "completed_epochs": 49,
+  "selection_metric": "validation_macro_f1",
+  "checkpoint_selection": "strict literal maximum; earliest exact tie",
+  "model_sha256": "466369bfc22a38eb1d07c5d00a103ade68f91863bd488a682ec5310b20e3b844",
+  "model_bytes": 437970952,
+  "original_model_freeze_sha256": "a73db4734ccfa9cdffa35321253de1e78a2e3a5e75a7e543f5f14f22bd982878",
+  "pretrained_model_id": "google-bert/bert-base-uncased",
+  "pretrained_revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+  "dataset_sha256": {
+    "train": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+    "validation": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42",
+    "held_out_recorded_not_rehashed_for_release": "b41613e23cdefe32af5e7fff1ceed42c5248a4192861410af5ed830430ad71de"
+  },
+  "validation": {
+    "accuracy": 0.7024630541871921,
+    "unweighted_loss": 2.8887012509876873,
+    "macro_precision": 0.5997695094145338,
+    "macro_recall": 0.5469486371797675,
+    "macro_f1": 0.5685944251323821,
+    "weighted_precision": 0.6948349684853703,
+    "weighted_recall": 0.7024630541871921,
+    "weighted_f1": 0.6955474743459408,
+    "selected_epoch": 41,
+    "class_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "zero_division": 0,
+    "scope": "New frozen-validation run only; historical 0.581140 is not a target or recreated checkpoint",
+    "confusion_matrix": [
+      [
+        29,
+        8,
+        6,
+        2,
+        5,
+        20
+      ],
+      [
+        4,
+        36,
+        8,
+        2,
+        0,
+        39
+      ],
+      [
+        6,
+        6,
+        46,
+        1,
+        1,
+        29
+      ],
+      [
+        2,
+        0,
+        5,
+        34,
+        8,
+        22
+      ],
+      [
+        8,
+        5,
+        9,
+        3,
+        74,
+        23
+      ],
+      [
+        15,
+        20,
+        22,
+        8,
+        15,
+        494
+      ]
+    ],
+    "per_class": {
+      "1": {
+        "precision": 0.453125,
+        "recall": 0.4142857142857143,
+        "f1": 0.43283582089552236,
+        "support": 70
+      },
+      "2": {
+        "precision": 0.48,
+        "recall": 0.4044943820224719,
+        "f1": 0.43902439024390244,
+        "support": 89
+      },
+      "3": {
+        "precision": 0.4791666666666667,
+        "recall": 0.5168539325842697,
+        "f1": 0.4972972972972973,
+        "support": 89
+      },
+      "4": {
+        "precision": 0.68,
+        "recall": 0.4788732394366197,
+        "f1": 0.5619834710743802,
+        "support": 71
+      },
+      "5": {
+        "precision": 0.7184466019417476,
+        "recall": 0.6065573770491803,
+        "f1": 0.6577777777777778,
+        "support": 122
+      },
+      "6": {
+        "precision": 0.7878787878787878,
+        "recall": 0.8606271777003485,
+        "f1": 0.8226477935054122,
+        "support": 574
+      }
+    }
+  },
+  "final_test": {
+    "accuracy": 0.6995073891625616,
+    "class_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "confusion_matrix": [
+      [
+        28,
+        10,
+        13,
+        2,
+        4,
+        12
+      ],
+      [
+        5,
+        33,
+        11,
+        1,
+        3,
+        37
+      ],
+      [
+        7,
+        5,
+        36,
+        4,
+        4,
+        33
+      ],
+      [
+        0,
+        2,
+        2,
+        40,
+        8,
+        19
+      ],
+      [
+        6,
+        7,
+        7,
+        9,
+        67,
+        26
+      ],
+      [
+        8,
+        18,
+        23,
+        9,
+        10,
+        506
+      ]
+    ],
+    "per_class": {
+      "1": {
+        "precision": 0.5185185185185185,
+        "recall": 0.4057971014492754,
+        "f1": 0.45528455284552843,
+        "support": 69
+      },
+      "2": {
+        "precision": 0.44,
+        "recall": 0.36666666666666664,
+        "f1": 0.4,
+        "support": 90
+      },
+      "3": {
+        "precision": 0.391304347826087,
+        "recall": 0.4044943820224719,
+        "f1": 0.39779005524861877,
+        "support": 89
+      },
+      "4": {
+        "precision": 0.6153846153846154,
+        "recall": 0.5633802816901409,
+        "f1": 0.5882352941176471,
+        "support": 71
+      },
+      "5": {
+        "precision": 0.6979166666666666,
+        "recall": 0.5491803278688525,
+        "f1": 0.6146788990825688,
+        "support": 122
+      },
+      "6": {
+        "precision": 0.7993680884676145,
+        "recall": 0.8815331010452961,
+        "f1": 0.8384424192212097,
+        "support": 574
+      }
+    },
+    "zero_division": 0,
+    "macro_precision": 0.5770820394772503,
+    "weighted_precision": 0.6875658015175875,
+    "macro_recall": 0.5285086434571172,
+    "weighted_recall": 0.6995073891625616,
+    "macro_f1": 0.5490718700859288,
+    "weighted_f1": 0.6904821963220387
+  },
+  "once_only_evaluation": {
+    "date": "2026-11-02",
+    "status": "completed once under explicit author authorization; original consumed lock preserved privately",
+    "release_inference_performed": false,
+    "source_data_read_for_release": false
+  },
+  "source_aggregate_sha256": {
+    "validation_metrics.json": "ced553a9a3c8baf99dbe7b7e8b02e1fdae26be73a211324189a60d8004048fac",
+    "validation_confusion_matrix.csv": "2f60cf20906a05f18325fb94bcc74bb801316999218efc6db3f9d61723e1032a",
+    "validation_classification_report.json": "87aa92954318a5ad4cc777c8b3cd4c607714e225a1b5ff77ad004078e8923b6e",
+    "final_metrics.json": "27e18cefcf5da17d49b7ffbe5c795a874c6f34822cece17343c12f56f23073a8"
+  },
+  "private_evidence_references": {
+    "training_run": "experiments/bert_mac_m3pro_20261101/outputs/mac_mps_original_sqrtweighted_20261101_174030_281767_UTC",
+    "final_evidence": "experiments/bert_mac_m3pro_20261101/final_evaluation_20261102",
+    "complete_training_archive_sha256": "5aa67cfc0ce82b42dad3e36fb669206f4dd87ff958b3089846c69c785f19d970",
+    "final_evidence_archive_sha256": "97b51b85e51578e60a22f0592c10b1221d2b2f0a5bdae6113875305e8a9c4660"
+  },
+  "limits": [
+    "Single fixed seeded Mac run; historical validation 0.581140 is a different unrecovered checkpoint.",
+    "Frozen partitions retain punctuation-equivalent relations: seven train/test pairs (one cross-label) and one validation/test pair; no rows removed or relabeled.",
+    "Requirement-level splits do not establish project or semantic-family independence.",
+    "Prototype real BERT integration and human effectiveness have not been verified."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "fr": {
+    "forward_id": "Helsinki-NLP/opus-mt-en-fr",
+    "reverse_id": "Helsinki-NLP/opus-mt-fr-en",
+    "forward": "dd7f6540a7a48a7f4db59e5c0b9c42c8eea67f18",
+    "reverse": "c4aed37b318c763fd177aa449b44e3b783cc6c02"
+  },
+  "de": {
+    "forward_id": "Helsinki-NLP/opus-mt-en-de",
+    "reverse_id": "Helsinki-NLP/opus-mt-de-en",
+    "forward": "6183067f769a302e3861815543b9f312c71b0ca4",
+    "reverse": "1a922f3b32a8e809e17a47d4b32142d8105924e5"
+  },
+  "es": {
+    "forward_id": "Helsinki-NLP/opus-mt-en-es",
+    "reverse_id": "Helsinki-NLP/opus-mt-es-en",
+    "forward": "5bc4493d463cf000c1f0b50f8d56886a392ed4ab",
+    "reverse": "c96e2c5399ebfae4fc43d9669556b9afa74bb69d"
+  }
+}

@@ -1,0 +1,6 @@
+# Exact versions in the pre-existing local training environment; no package installation required.
+# Full actual dependency list is captured independently for each run in pip_freeze.txt.
+torch==2.9.0
+numpy==1.26.4
+pandas==2.2.3
+requests==2.34.2

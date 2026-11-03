@@ -1,0 +1,159 @@
+{
+  "experiment_id": "ambifix_train_only_lineage_backtranslation_mac_20261027",
+  "date": "2026-10-27",
+  "target_per_ambiguity_class_including_originals": 900,
+  "ambiguity_classes": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "clean_class": 6,
+  "clean_class_synthetic_count": 0,
+  "pivots": [
+    "fr",
+    "de",
+    "es"
+  ],
+  "variants_per_pivot": 1,
+  "batch_size_initial": 2,
+  "device": "MPS with documented CPU fallback if required",
+  "max_input_tokens": 192,
+  "max_output_tokens": 192,
+  "seed": 42,
+  "generation": "deterministic beam search num_beams=4 do_sample=False",
+  "attempt_limit": "One source/pivot attempt; exhaust fixed pool if targets unmet; no forced fill or extra variants",
+  "source_sha256": {
+    "date": "2026-10-27",
+    "status": "PASS_FROZEN_SOURCE_CONTENT_CHECKS",
+    "scope": "Explicit allowlisted frozen train.csv and validation.csv only. No source file was modified. No test file or directory traversal/stat/listing was performed. No model training, package execution, downloads or old prediction inspection.",
+    "normalization": "Unicode NFKC; whitespace collapse/trim; casefold. This textual screen does not establish semantic independence.",
+    "partitions": {
+      "train": {
+        "path": "data/splits/train.csv",
+        "sha256": "c5d623c1738400170fe7b5feb23a82d4a3c15f071a77fe5c4bfba8c6c5cc70f8",
+        "bytes": 653938,
+        "encoding_used": "utf-8-sig",
+        "rows": 4731,
+        "columns": [
+          "source_id",
+          "Text",
+          "Class"
+        ],
+        "class_counts": {
+          "1": 324,
+          "2": 418,
+          "3": 415,
+          "4": 332,
+          "5": 568,
+          "6": 2674
+        },
+        "numeric_class_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "missing_text_values": 0,
+        "missing_label_values": 0,
+        "full_row_duplicate_count_excluding_first": 0,
+        "exact_text_duplicate_count_excluding_first": 0,
+        "normalized_text_duplicate_count_excluding_first": 0,
+        "unique_normalized_text_count": 4731,
+        "normalized_cross_label_conflict_keys": 0,
+        "normalized_cross_label_conflict_rows": 0,
+        "normalized_conflict_row_indices_zero_based": [],
+        "source_id_unique_count": 4731,
+        "source_id_missing_or_blank_count": 0,
+        "source_id_duplicate_count_excluding_first": 0
+      },
+      "validation": {
+        "path": "data/splits/validation.csv",
+        "sha256": "9b5c7c76dad306bff4b306753d04a0169f84dd6f27eb8312bc63f5f3322bef42",
+        "bytes": 139174,
+        "encoding_used": "utf-8-sig",
+        "rows": 1015,
+        "columns": [
+          "source_id",
+          "Text",
+          "Class"
+        ],
+        "class_counts": {
+          "1": 70,
+          "2": 89,
+          "3": 89,
+          "4": 71,
+          "5": 122,
+          "6": 574
+        },
+        "numeric_class_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "missing_text_values": 0,
+        "missing_label_values": 0,
+        "full_row_duplicate_count_excluding_first": 0,
+        "exact_text_duplicate_count_excluding_first": 0,
+        "normalized_text_duplicate_count_excluding_first": 0,
+        "unique_normalized_text_count": 1015,
+        "normalized_cross_label_conflict_keys": 0,
+        "normalized_cross_label_conflict_rows": 0,
+        "normalized_conflict_row_indices_zero_based": [],
+        "source_id_unique_count": 1015,
+        "source_id_missing_or_blank_count": 0,
+        "source_id_duplicate_count_excluding_first": 0
+      }
+    },
+    "cross_partition": {
+      "exact_text_overlap_keys": 0,
+      "normalized_text_overlap_keys": 0,
+      "train_rows_with_normalized_overlap": 0,
+      "validation_rows_with_normalized_overlap": 0,
+      "cross_label_shared_normalized_keys": 0,
+      "source_id_overlap_count": 0
+    },
+    "checks": {
+      "expected_train_rows": true,
+      "expected_validation_rows": true,
+      "all_numeric_class_ids_1_to_6": true,
+      "train_no_full_or_normalized_duplicates": true,
+      "validation_no_full_or_normalized_duplicates": true,
+      "within_partition_label_conflicts_zero": true,
+      "normalized_train_validation_overlap_zero": true,
+      "sources_unchanged_during_check": true,
+      "train_source_ids_unique_nonempty": true,
+      "validation_source_ids_unique_nonempty": true,
+      "source_ids_cross_partition_disjoint": true
+    },
+    "test_accessed": false,
+    "labels_changed": false,
+    "datasets_changed": false,
+    "remaining_unknowns": [
+      "Requested package not inspected in this independent source-only check; supplied package train/validation byte equality remains pending.",
+      "Numeric label IDs and their counts were observed; semantic class-name mapping was not independently established from these CSVs alone.",
+      "No semantic/source-project paraphrase independence or expert synthetic-label validity is established.",
+      "No generation, dependency, MPS, translation-model or resume correctness is assessed by this report."
+    ]
+  },
+  "working_script_sha256": "2586b4e10df4b587fa40058d403de173f2e28d1c79265a4c9989db7a97b5e003",
+  "original_script_sha256": "56962fac33d620c25543af315793ce6d77b77c0b8ef9c96536ca5cc90184b125",
+  "scientific_filter_functions_ast_unchanged": [
+    "normalize",
+    "punct_normalize",
+    "protected_terms",
+    "numeric_tokens",
+    "candidate_reason"
+  ],
+  "model_lock_path": "config/model_lock.json",
+  "validation_policy": "Unchanged; only identity and automatic overlap screening, never generation",
+  "test_policy": "No access of any kind",
+  "label_status": "Inherited UNVERIFIED for every synthetic; no expert-validation claim",
+  "no_bert_training": true
+}

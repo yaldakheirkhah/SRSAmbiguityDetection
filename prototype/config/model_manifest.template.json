@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "checkpoint_dir": "../provided_model",
+  "model_id": "corrected_weighted_bert",
+  "checkpoint_version": "REPLACE_WITH_ACTUAL_SELECTED_CHECKPOINT_VERSION",
+  "trained_checkpoint_attestation": false,
+  "training_data_provenance": "REPLACE_WITH_VERIFIED_OR_AUTHOR_ATTESTED_PROVENANCE",
+  "provenance_note": "REPLACE_WITH_ACTUAL_SOURCE_RUN_AND_LIMITS_OF_TRAINING_PROVENANCE",
+  "model_index_to_dataset_id": [1, 2, 3, 4, 5, 6],
+  "label_names": ["Lexical Ambiguity", "Syntactic Ambiguity", "Semantic Ambiguity", "Syntax Ambiguity", "Pragmatic Ambiguity", "Clean"],
+  "preprocessing": {"input_field": "Text", "external_preprocessing": "none", "max_length": null, "forward_precision": "REPLACE_WITH_ACTUAL_FP32_OR_CUDA_PRECISION"},
+  "files_sha256": {"config.json": "REPLACE", "model.safetensors": "REPLACE", "tokenizer_config.json": "REPLACE", "special_tokens_map.json": "REPLACE", "tokenizer.json": "REPLACE", "vocab.txt": "REPLACE"}
+}

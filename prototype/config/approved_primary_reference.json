@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "model_id": "corrected_weighted_bert",
+  "reference_role": "validation_reference",
+  "approval_scope": "User requested checkpoint compatibility and reproduction of existing approved validation predictions only; no test access or model update",
+  "reference_sha256": "7e54777b6399259316ca69d883ef6b5db655efb104a087942afc644d6a15601c",
+  "expected_rows": 1015,
+  "class_order": [1, 2, 3, 4, 5, 6],
+  "columns": {"source_id": "source_id", "text": "Text", "true_label": "Class", "predicted_label": "predicted_class", "probabilities": ["prob_class_1", "prob_class_2", "prob_class_3", "prob_class_4", "prob_class_5", "prob_class_6"]},
+  "probability_tolerance": 0.0001,
+  "tolerance_status": "Fixed engineering replay tolerance, not calibrated uncertainty or a statistical performance threshold; fail without silently relaxing it",
+  "source_evidence": "experiments/weighted_bert/runs/bert_sqrtweighted_max50_20261018_214144/verification/metrics_recalculated.json",
+  "variant_A_reference_status": "Author-reported score only; no source artifacts or approved prediction identity supplied locally"
+}

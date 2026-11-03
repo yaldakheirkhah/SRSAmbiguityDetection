@@ -1,0 +1,5 @@
+# Optional real model adapter only. Install the appropriate torch wheel separately.
+transformers==4.51.3
+safetensors==0.5.3
+numpy==1.26.4
+# Documented compatible PyTorch target: torch==2.9.0 (CPU/Mac or CUDA 12.8 wheel).

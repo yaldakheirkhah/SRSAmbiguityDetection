@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest==8.4.2
+streamlit==1.50.0
+# Arrow 26 requires NumPy2; Arrow19 supports the research NumPy1.26 pin.
+pyarrow==19.0.1

@@ -1,0 +1,11 @@
+# Exact ML/runtime choices for this NEW run. CUDA PyTorch is installed separately
+# by the notebook: torch==2.9.0+cu128 from the official cu128 wheel index.
+transformers==4.51.3
+huggingface-hub==0.36.2
+safetensors==0.5.3
+numpy==1.26.4
+pandas==2.2.3
+scikit-learn==1.6.1
+# Notebook launch/kernel tools (also recorded in actual pip_freeze after execution).
+jupyterlab==4.4.9
+ipykernel==6.30.1
